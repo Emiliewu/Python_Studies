@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{%static 'style.css'%}">
+  <title>Counter</title>
+</head>
+<body>
+  <div id="container">
+    <h1>Counter</h1>
+    <div id="buttons">
+    <a href="/destroy_session">Reset</a>
+    <a href="/increment_by_two">Increment by two</a>
+    </div>
+    <p>{{num_visits}} time{% if num_visits > 1 %}s{% endif %}</p>
+    <h1>Actual visits</h1>
+    <p>{{counter}} time{% if counter > 1 %}s{% endif %}</p>
+    <form action="/set_num" method = "POST">
+      {%csrf_token%}
+      <label for="user_num">How many times do you want to increment?</label>
+      <input name="user_num" type="number">
+      <button type="submit">Increment by user</button>
+    </form> 
+    
+  </div>
+</body>
+</html>

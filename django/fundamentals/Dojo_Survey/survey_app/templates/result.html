@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{%static 'style.css'%}">
+  <title>Result</title>
+</head>
+<body>
+  <div>
+    <h1>Submitted Info</h1>
+    <ul id="title">
+      <li>Name: </li>
+      <li>Dojo Location: </li>
+      <li>Favorite Language:</li>
+      <li>Comment:</li>
+    </ul>
+    <ul id="content">
+      <li>{{name}}</li>
+      <li>{{location}}</li>
+      <li>{{language}}</li>
+      <li>{{comment}}</li>
+    </ul>
+    <a href="/">Go Back</a>
+  </div>
+</body>
+</html>
