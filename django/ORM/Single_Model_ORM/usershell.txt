@@ -1,0 +1,46 @@
+python manage.py shell
+
+>>>from users_app.models import Users
+-------------------------------------------------
+#Query: Create 3 new users
+
+>>>Users.objects.create(first_name = "Emilie", last_name = "Wu", email_address = "emiliewu00@gmail.com", age = "100")
+
+>>>Users.objects.create(first_name = "Harry", last_name = "Potter", email_address = "harrypotter@gmail.com", age = "200")
+
+>>>Users.objects.create(first_name = "Merlin", last_name = "Wyllt", email_address = "Merlin@gmail.com", age = "300")
+-----------------------------------------------
+# Query: Retrieve all the users
+
+>>>Users.objects.all()
+------------------------------------
+# Query: Retrieve the last user
+
+>>>Users.objects.last()
+------------------------------------
+# Query: Retrieve the first user
+
+>>>Users.objects.first()
+-----------------------
+# Query: Change the user with id=3 so their last name is Pancakes.
+
+>>> c = Users.objects.get(id=3)
+>>> c.last_name = "pancakes"
+>>> c.save()
+--------------------------------------------------
+# Query: Delete the user with id=2 from the database
+
+>>> c = Users.objects.get(id=2)
+>>> c.delete()
+---------------------------------------
+# Query: Get all the users, sorted by their first name
+
+>>> Users.objects.order_by("first_name")
+----------------------------------------
+# BONUS Query: Get all the users, sorted by their first name in descending order
+
+>>> Users.objects.all().order_by("-first_name")
+
+
+
+

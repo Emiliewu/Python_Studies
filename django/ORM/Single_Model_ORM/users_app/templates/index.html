@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title> Document</title>
+</head>
+<body>
+  <div id="container">
+    <h2>All the Users</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+        </tr>
+  
+        {% for users in user_info %}
+          <tr>
+            <td  scope="row">{{users.id}}</td>
+            <td  scope="row">{{users.first_name}} {{users.last_name}}</td>
+            <td  scope="row">{{users.email_address}}</td>
+            <td  scope="row">{{users.age}}</td>
+          </tr> 
+        {% endfor %}
+      </table>
+    </div>
+    <div id="add">
+      <h2>Add a User</h2>
+      <form action="/add_user" method="POST"> {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input name="first_name" type="text" required>
+        <label for="last_name">Last Name</label>
+        <input name="last_name" type="text" required>
+        <label for="email_address">Email Address</label>
+        <input name="email_address" type="email" required>
+        <label for="age">Age</label>
+        <input name="age" type="number" required>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
