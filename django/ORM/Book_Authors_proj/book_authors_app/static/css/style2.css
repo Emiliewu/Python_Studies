@@ -1,0 +1,35 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+#container {
+  width: 900px;
+  margin: 30px auto;
+}
+#desc, #notes {
+  display: inline-block;
+  width: 10%;
+  vertical-align: top;
+  margin-right: 70px;
+}
+h2,h4,p{
+  margin-bottom: 15px;
+}
+p {
+  display: inline-block;
+  font-size: 14px;
+  width: 50%;
+}
+form {
+  display: inline-block;
+  width: 20%;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+ul {
+  padding:10px;
+}
+li {
+  margin-left: 30px;
+  font-size: 14px;
+}

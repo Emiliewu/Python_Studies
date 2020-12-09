@@ -1,0 +1,18 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+#container {
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+}
+#container form {
+  display: inline-block;
+  width: 30%;
+}
+#container table {
+  width: 40%;
+  border: 2px solid darkgray;
+}

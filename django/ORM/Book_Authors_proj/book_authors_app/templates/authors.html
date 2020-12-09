@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+  <title>Author Details</title>
+</head>
+<body>
+  <div id="container">
+    <h2>{{author}}</h2>
+    <h4>ID: {{author.id}}</h4>
+    <h4 id="notes">Notes</h4>
+    <p>{{author.notes}}</p>
+    <ul>Books
+      {% for book in author_books %}
+      <li>{{book}}</li>
+      {% endfor %}
+    </ul>
+    <form action="{% url 'author_book' author.id %}" method="POST"> {% csrf_token %}
+      <select name="book_id">
+        {% for book in other_books %}
+        <option value={{book.id}}>{{book}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</body>
+</html>
