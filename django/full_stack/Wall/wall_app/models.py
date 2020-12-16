@@ -2,7 +2,6 @@ from django.db import models
 import re, bcrypt
 from datetime import datetime
 
-
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9+_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):
@@ -61,30 +60,30 @@ class User(models.Model):
   def __str__(self):
     return f"{self.first_name} {self.last_name}"
 
-class MessageManager(models.Model):
+class MsgManager(models.Manager):
   def mg_validate(self, postData):
     errors = {}
-    if not postData["message"] or postData["message"].isspace():
-      errors["message"] = "You cannot post an empty message!"
+    if not postData["msg"] or postData["msg"].isspace():
+      errors["msg"] = "You cannot post an empty message!"
     return errors
 
-class Message(models.Model):
-  user_id = models.ForeignKey(User, related_name="messages", on_delete=models.CASCADE)
-  message = models.CharField(max_length=255)
+class Msg(models.Model):
+  user = models.ForeignKey(User, related_name="messages", on_delete=models.CASCADE)
+  msg = models.CharField(max_length=255)
   create_at = models.DateTimeField(auto_now_add=True)
   update_at = models.DateTimeField(auto_now=True)
-  objects = MessageManager()
+  objects = MsgManager()
   
-class CommentManager(models.Model):
-  def mg_validate(self, postData):
+class CommentManager(models.Manager):
+  def cm_validate(self, postData):
     errors = {}
     if not postData["comment"] or postData["comment"].isspace():
       errors["comment"] = "You cannot post an empty comment!"
     return errors
 
 class Comment(models.Model):
-  message_id = models.ForeignKey(Message, related_name="comments", on_delete=models.CASCADE)
-  user_id = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+  msg = models.ForeignKey(Msg, related_name="comments", on_delete=models.CASCADE)
+  user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
   comment = models.TextField()
   create_at = models.DateTimeField(auto_now_add=True)
   update_at = models.DateTimeField(auto_now=True)
