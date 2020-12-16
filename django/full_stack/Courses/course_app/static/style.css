@@ -1,0 +1,37 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  width: 80%;
+  margin: 10px auto;
+}
+form {
+  margin-bottom: 30px;
+}
+.button {
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 2px 2px 4px #555;
+  padding: 2px 8px;
+  margin-left: 40px;
+}
+.button:hover {
+  box-shadow: 0 0 3px #666;
+}
+#no {
+  background-color: gray;
+}
+#yes {
+  background-color: orangered;
+}
+#choice {
+  margin: 30px 20%;
+}
+#comment {
+  margin: 20px auto;
+}

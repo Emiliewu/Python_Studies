@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <title>Detail</title>
+</head>
+<body>
+  <div id="container">
+    <h2>Are you sure you want to delete the following course?</h2>
+    <ul> 
+      <li>Name: {{ course.name }}</li>
+      <li>Desc: {{ desc.desc }}</li>
+    </ul>
+    <div id="choice">
+      <a class="button" id="no">No</a><a class="button" id="yes" href="{% url 'delete' course.id %}">yes, I want to delete this</a>
+    </div>
+  </div>
+</body>
+</html>

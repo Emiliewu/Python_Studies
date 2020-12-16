@@ -1,0 +1,14 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  width: 80%;
+  margin: 30px auto;
+  text-align: center;
+  vertical-align: middle;
+}
+h3 {
+  padding: 30px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <title>The Wall</title>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="row justify-content-between mb-2 mx-4">
+      <h2>CodingDojo Wall</h2>
+      <p>Welcome {{ username }}<p></p>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <p class="border-bottom border-dark mb-3"></p>
+    <div class="container mt-4">
+      <form action="{% url 'create_mg' %}" method="POST"> {% csrf_token %}
+        <div class="form-group">
+          <label for="message">Post a message</label>
+          <textarea name="message" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn-primary">Post a message</button>
+        </div>
+      </form>
+    </div>
+    <div class="container mt-4">
+      {% for message in messages %}
+      <p class="font-weight-bold">{{ message.user_id}} {{message.create_at}}</p>
+      <p class="ml-4">{{ message.message }}</p>
+        {% if message.user_id.id == request.session.user_id %}
+        <p class="text-right"><a href="{% url 'del_mg' message.id %}">delete</a></p>
+        {% endif %}
+          {% for comment in message.comments.all %}
+        <p class="ml-5 font-weight-bold">{{ comment.user_id }} {{ comment.create_at }}</p>
+        <p class="ml-5">{{ comment.comment }}</p>
+          {% if comment.user_id.id == request.session.user_id %}
+            {%  if comment in valid_cm %}
+            <p class="text-right"><a class="text-right" href="{% url 'del_cm' comment.id %}">delete</a></p>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        <form class="ml-5" action="{% url 'create_cm' message.id %}" method="POST"> {% csrf_token %}
+          <div class="form-group">
+            <label for="comment">Post a comment</label>
+            <textarea name="comment" class="form-control" rows="3"></textarea>            
+          </div>
+          <div class="text-right">
+            <button type="submit" class="btn-primary">Post a comment</button>
+          </div>
+        </form>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
